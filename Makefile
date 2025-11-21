@@ -45,7 +45,7 @@ coverage_report:
 	fi
 	@mkdir -p $(COV_ANNOTATE_DIR)
 	verilator_coverage --write-info $(COV_INFO) $(COV_DAT)
-	verilator_coverage --annotate $(COV_ANNOTATE_DIR) $(COV_DAT)
+	verilator_coverage --annotate-min 1 --annotate $(COV_ANNOTATE_DIR) $(COV_DAT)
 
 clean:
 	rm -rf $(BUILD_DIR) $(COVERAGE_ROOT) coverage.dat coverage.info coverage_annotate
