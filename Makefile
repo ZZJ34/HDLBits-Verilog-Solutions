@@ -1,5 +1,6 @@
 VERILATOR ?= verilator
-VERILATOR_FLAGS ?= -Wall -Wno-DECLFILENAME --coverage
+# -Wno-fatal: do not treat warnings as errors (needed for vector logical ops etc.)
+VERILATOR_FLAGS ?= -Wall -Wno-DECLFILENAME --coverage -Wno-fatal
 export CCACHE_DISABLE ?= 1
 DUT ?= 001
 TOP ?= top_module
@@ -25,7 +26,7 @@ $(BUILD_SUBDIR):
 	@mkdir -p $@
 
 $(BIN): $(DUT_SRC) $(TB_SRC) | $(BUILD_SUBDIR)
-	$(VERILATOR) $(VERILATOR_FLAGS) --cc $(DUT_SRC) --exe $(TB_SRC) \
+	$(VERILATOR) $(VERILATOR_FLAGS) --cc $(DUT_SRC) --exe ../../$(TB_SRC) \
 		--top-module $(TOP) --prefix $(PREFIX) -o V$(TOP) -Mdir $(BUILD_SUBDIR)
 	$(MAKE) -C $(BUILD_SUBDIR) -f $(MODEL).mk V$(TOP)
 
