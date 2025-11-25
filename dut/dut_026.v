@@ -4,15 +4,42 @@ module top_module (
     output [31:0] sum
     );
   
-  wire cin1, cout1, cout2;
+  wire cout1, cout2;
   wire [15:0] sum1, sum2;
-  assign cin1 = 0;
   
-  add16 instance1(.a(a[15:0]), .b(b[15:0]), .cin(cin1), .cout(cout1), .sum(sum1));
+  add16 instance1(.a(a[15:0]), .b(b[15:0]), .cin(0), .cout(cout1), .sum(sum1));
   add16 instance2(.a(a[31:16]), .b(b[31:16]), .cin(cout1), .cout(cout2), .sum(sum2));
     
   assign sum = {sum2, sum1};
 
+endmodule
+
+module add16 (
+  input [15:0] a,
+  input [15:0] b,
+  input cin,
+  output [15:0] sum,
+  output cout
+  );
+  
+  wire [16:0] carry;
+  assign carry[0] = cin;
+  
+  genvar i;
+  generate
+    for (i = 0; i < 16; i = i + 1) begin: gen_add
+      add1 fa(
+        .a(a[i]),
+        .b(b[i]),
+        .cin(carry[i]),
+        .sum(sum[i]),
+        .cout(carry[i+1])
+        );
+    end
+  endgenerate
+  
+  assign cout = carry[16];
+  
 endmodule
 
 module add1 ( 

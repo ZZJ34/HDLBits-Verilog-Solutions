@@ -7,9 +7,9 @@ module top_module (
   
   wire [7:0] w1,w2,w3;
   
-  my_dff8(.clk(clk), .d(d),  .q(w1));
-  my_dff8(.clk(clk), .d(w1), .q(w2));
-  my_dff8(.clk(clk), .d(w2), .q(w3));
+  my_dff8 inst0(.clk(clk), .d(d),  .q(w1));
+  my_dff8 inst1(.clk(clk), .d(w1), .q(w2));
+  my_dff8 inst2(.clk(clk), .d(w2), .q(w3));
   
   always@(*)begin
       case(sel)
@@ -20,4 +20,16 @@ module top_module (
       endcase
   end
             
+endmodule
+
+module my_dff8 (
+  input clk,
+  input [7:0] d,
+  output reg [7:0] q
+  );
+  
+  always @(posedge clk) begin
+    q <= d;
+  end
+  
 endmodule

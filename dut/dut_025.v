@@ -5,8 +5,19 @@ module top_module(
     );
   
   wire w1;
-  reg x = 0;
   
-  add16 inst0(.a(a[15:0]), .b(b[15:0]),  .sum(sum[15:0]),  .cin(x), .cout(w1));
+  add16 inst0(.a(a[15:0]), .b(b[15:0]),  .sum(sum[15:0]),  .cin(0), .cout(w1));
   add16 inst1(.a(a[31:16]), .b(b[31:16]), .sum(sum[31:16]), .cin(w1));
+endmodule
+
+module add16 (
+  input [15:0] a,
+  input [15:0] b,
+  input cin,
+  output [15:0] sum,
+  output cout
+  );
+  
+  assign {cout, sum} = a + b + cin;
+  
 endmodule

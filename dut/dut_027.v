@@ -5,7 +5,8 @@ module top_module(
     );
 
     wire cin1, cout1, cin2, cout2, cin3, cout3;
-    wire [15:0] sum1, sum2, sum3, sum_mux;
+    wire [15:0] sum1, sum2, sum3;
+    reg  [15:0] sum_mux;
     assign cin1 = 0;
     assign cin2 = 0;
     assign cin3 = 1;
@@ -23,4 +24,16 @@ module top_module(
     
   assign sum = {sum_mux, sum1};
     
+endmodule
+
+module add16 (
+  input [15:0] a,
+  input [15:0] b,
+  input cin,
+  output [15:0] sum,
+  output cout
+  );
+  
+  assign {cout, sum} = a + b + cin;
+  
 endmodule

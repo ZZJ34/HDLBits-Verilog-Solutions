@@ -16,3 +16,15 @@ module top_module(
   add16 instance2(.a(a[31:16]), .b(b_xor[31:16]), .cin(cout1), .cout(cout2), .sum(sum2));
       
 endmodule
+
+module add16 (
+  input [15:0] a,
+  input [15:0] b,
+  input cin,
+  output [15:0] sum,
+  output cout
+  );
+  
+  assign {cout, sum} = a + b + cin;
+  
+endmodule
