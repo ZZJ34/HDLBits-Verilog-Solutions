@@ -20,8 +20,10 @@ module top_module (
 			4'hc: pos = 2'h2;
 			4'hd: pos = 2'h0;
 			4'he: pos = 2'h1;
-			4'hf: pos = 2'h0;
-			default: pos = 2'b0;
+        			4'hf: pos = 2'h0;
+            /*verilator coverage_off*/
+			default: pos = 2'b0; // Unreachable under 2-state sim; keep for safety/readability
+            /*verilator coverage_on*/
 		endcase
 	end
 	
