@@ -9,6 +9,7 @@ MODEL := $(PREFIX)
 
 BUILD_DIR := build
 COVERAGE_ROOT := coverage
+LIB_SRCS := $(wildcard dut/lib/*.v)
 DUT_SRC := dut/dut_$(DUT).v
 TB_SRC := tb/tb_$(DUT).cpp
 BUILD_SUBDIR := $(BUILD_DIR)/tb_$(DUT)
@@ -25,8 +26,8 @@ all: run_tb
 $(BUILD_SUBDIR):
 	@mkdir -p $@
 
-$(BIN): $(DUT_SRC) $(TB_SRC) | $(BUILD_SUBDIR)
-	$(VERILATOR) $(VERILATOR_FLAGS) --cc $(DUT_SRC) --exe ../../$(TB_SRC) \
+$(BIN): $(DUT_SRC) $(TB_SRC) $(LIB_SRCS) | $(BUILD_SUBDIR)
+	$(VERILATOR) $(VERILATOR_FLAGS) --cc $(DUT_SRC) $(LIB_SRCS) --exe ../../$(TB_SRC) \
 		--top-module $(TOP) --prefix $(PREFIX) -o V$(TOP) -Mdir $(BUILD_SUBDIR)
 	$(MAKE) -C $(BUILD_SUBDIR) -f $(MODEL).mk V$(TOP)
 
