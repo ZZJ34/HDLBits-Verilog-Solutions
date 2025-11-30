@@ -1,7 +1,7 @@
 module top_module( 
     input [15:0] a, b, c, d, e, f, g, h, i,
     input [3:0] sel,
-    output reg [15:0] out 
+    output [15:0] out 
 	);
     
     always@(*)begin
