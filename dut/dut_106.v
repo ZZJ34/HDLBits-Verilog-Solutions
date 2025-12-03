@@ -2,8 +2,8 @@ module top_module(
     input clk,
     input reset,
     input ena,
-    output pm,
-    output [7:0] hh,
+    output reg pm,
+    output reg [7:0] hh,
     output [7:0] mm,
     output [7:0] ss);
     
@@ -40,7 +40,7 @@ module top_module(
                         hh[3:0] <= 4'h0;
                         hh[7:4] <= hh[7:4] + 1'h1;
                     end
-                    else hh[3:0] = hh[3:0] + 1'h1;
+                    else hh[3:0] <= hh[3:0] + 1'h1;
                 end
             end
             else hh <= hh;
@@ -53,7 +53,7 @@ module count60(
 	input clk,
     input reset,
     input ena,
-    output [7:0] q
+    output reg [7:0] q
 );
     always @(posedge clk) begin
         if(reset) q <= 8'h0;
