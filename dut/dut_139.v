@@ -2,7 +2,7 @@ module top_module (
     input clk,
     input aresetn,    // Asynchronous active-low reset
     input x,
-    output z ); 
+    output reg z ); 
 
 	localparam [1:0] IDLE     = 0,
 					 ONE      = 1,

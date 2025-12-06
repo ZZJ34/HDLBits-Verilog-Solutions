@@ -1,4 +1,4 @@
-odule top_module(
+module top_module(
     input clk,
     input areset,    // Freshly brainwashed Lemmings walk left.
     input bump_left,

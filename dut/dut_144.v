@@ -1,5 +1,4 @@
 module top_module (
-    input clk,
     input [2:0] y,
     input x,
     output Y0,

@@ -31,7 +31,9 @@ module top_module (
                     if (x) state_next <= C;
                     else   state_next <= B;
                 end
+                /*verilator coverage_off*/
                 default:   state_next <= A;
+                /*verilator coverage_on*/
             endcase
         end
     

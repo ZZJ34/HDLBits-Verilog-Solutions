@@ -3,7 +3,7 @@ module top_module (
     input enable,
     input S,
     input A, B, C,
-    output Z ); 
+    output reg Z ); 
 
 	reg[7:0] q;
 

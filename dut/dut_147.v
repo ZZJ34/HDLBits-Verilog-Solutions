@@ -22,7 +22,9 @@ module top_module (
             {e, 1'b1}:  next_state = d;
             {f, 1'b0}:  next_state = c;
             {f, 1'b1}:  next_state = d;
+            /*verilator coverage_off*/
             default  :  next_state = a;
+            /*verilator coverage_on*/
         endcase
     end
     

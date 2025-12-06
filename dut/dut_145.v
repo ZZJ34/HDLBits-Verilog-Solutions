@@ -20,6 +20,7 @@ module top_module (
             4'b1001: Y = 3'b011;
             4'b1010: Y = 3'b010;
             4'b1011: Y = 3'b011;
+            default: Y = 3'b000;
         endcase
     end
     

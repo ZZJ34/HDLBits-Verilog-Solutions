@@ -2,7 +2,7 @@ module top_module (
     input clk,
     input resetn,   
     input in,
-    output out
+    output reg out
   );
     
     reg [2:0] Q;

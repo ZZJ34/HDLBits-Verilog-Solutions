@@ -17,7 +17,7 @@ module MUXDFF (
     input E,
     input L,
     input w,
-    output out
+    output reg out
 );
     wire [1:0] temp;
     assign temp[0] = E ? w : out;

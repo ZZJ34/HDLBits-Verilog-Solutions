@@ -2,7 +2,7 @@ module top_module (
     input clk,
     input areset,
     input x,
-    output z
+    output reg z
   ); 
 
 	localparam [1:0] A = 2'b01,

@@ -45,7 +45,7 @@ module top_module(
 		else begin
 			case(next) 
 				RECEIVE : begin
-					i = i + 4'h1;
+					i <= i + 4'h1;
 				end
 				STOP : begin
 					i <= 0;
@@ -87,4 +87,17 @@ module top_module(
     assign done = ((state == STOP) && odd_reg);
     assign out_byte = (done) ? out : 8'b0;
 
+endmodule
+
+// Simple odd-parity generator over serial input stream.
+module parity(
+    input clk,
+    input reset,
+    input in,
+    output reg odd
+);
+    always @(posedge clk) begin
+        if (reset) odd <= 0;
+        else odd <= odd ^ in;
+    end
 endmodule
