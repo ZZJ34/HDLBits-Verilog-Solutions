@@ -18,7 +18,9 @@ module top_module(
             WNT: next = train_taken ? WT  : SNT;
             WT:  next = train_taken ? ST  : WNT;
             ST:  next = train_taken ? ST  :  WT;
+            /*verilator coverage_off*/
             default: next = WNT;
+            /*verilator coverage_on*/
         endcase
     end
     

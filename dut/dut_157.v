@@ -2,7 +2,7 @@ module top_module (
     input clk,
     input reset,      // Synchronous reset
     input data,
-    output [3:0] count,
+    output reg [3:0] count,
     output counting,
     output done,
     input ack 
@@ -51,13 +51,12 @@ module top_module (
 			SHIFT2: count[1] <= data;
 			SHIFT3: count[0] <= data;
 			COUNT : begin
-				if (count >= 0) begin
-					if (count_1000 < 999) 
-						count_1000 <= count_1000 + 1'b1;
-					else begin
-						count <= count - 1'b1;
-						count_1000 <= 0;
-					end
+				if (count_1000 < 999) begin
+					count_1000 <= count_1000 + 1'b1;
+				end
+				else begin
+					count <= count - 1'b1;
+					count_1000 <= 0;
 				end
 			end
 			default : count_1000 <= 0;
